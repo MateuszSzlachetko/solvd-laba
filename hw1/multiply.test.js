@@ -7,6 +7,7 @@ describe('String.prototype.multiply', () => {
     expect('100'.multiply('90')).toBe('9000');
     expect('252'.multiply('4')).toBe('1008');
     expect('4321'.multiply('123')).toBe('531483');
+    expect('800000008'.multiply('700000009')).toBe('560000012800000072');
   });
 
   it('should  multiply BigInt arg', () => {

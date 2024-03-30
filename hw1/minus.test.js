@@ -24,6 +24,8 @@ describe('String.prototype.minus', () => {
     expect('157829'.minus('829')).toBe('157000');
     expect('1234'.minus('345')).toBe('889');
     expect('12'.minus('11')).toBe('1');
+    expect('89999998'.minus('79999999')).toBe('9999999');
+    expect('80000008'.minus('70000009')).toBe('9999999');
   });
 
   it('should accurately subtract very large numbers', () => {

@@ -40,35 +40,21 @@ const validateMinusArgs = (arg1, arg2) => {
   throw error;
 }
 
-function setCharAt(str, index, chr) {
-  if (index > str.length - 1) return str;
-  return str.substring(0, index) + chr + str.substring(index + 1);
-}
-
 String.prototype.minus = function (term) {
   let x = this, y = term;
   validateMinusArgs(x, y);
 
-  let result = [];
+  let result = [], borrow = 0;
   for (let i = 0; i < x.length; i++) {
-    let a = 0, b = 0, c = 0;
-    if (i < x.length) a = parseInt(x[x.length - 1 - i], 10);
-    if (i < y.length) b = parseInt(y[y.length - 1 - i], 10);
-    c = a - b;
+    let c = parseInt(x[x.length - 1 - i], 10) - borrow;
+    if (i < y.length) c -= parseInt(y[y.length - 1 - i], 10);
     if (c < 0) {
-      for (let j = x.length - 2 - i; j >= 0; --j) {
-        let z = parseInt(x[j], 10);
-        if (z === 0)
-          continue;
-        else {
-          x = setCharAt(x, j, (z - 1).toString())
-          break;
-        }
-      }
-      result.push((10 + c).toString())
+      c += 10;
+      borrow = 1;
     } else {
-      result.push((c).toString())
+      borrow = 0;
     }
+    result.push(c)
   }
   return result.reverse().join('').replace(/^0+/, ''); // if "0" is acceptable, then approach needs to be changed
 }
