@@ -40,9 +40,9 @@ const validateMinusArgs = (arg1, arg2) => {
   throw error;
 }
 
-function setCharAt(str,index,chr) {
-  if(index > str.length-1) return str;
-  return str.substring(0,index) + chr + str.substring(index+1);
+function setCharAt(str, index, chr) {
+  if (index > str.length - 1) return str;
+  return str.substring(0, index) + chr + str.substring(index + 1);
 }
 
 String.prototype.minus = function (term) {
@@ -61,7 +61,7 @@ String.prototype.minus = function (term) {
         if (z === 0)
           continue;
         else {
-          x = setCharAt(x,j,(z-1).toString())
+          x = setCharAt(x, j, (z - 1).toString())
           break;
         }
       }
@@ -70,7 +70,29 @@ String.prototype.minus = function (term) {
       result.push((c).toString())
     }
   }
-  return result.reverse().join('').replace(/^0+/, '');
+  return result.reverse().join('').replace(/^0+/, ''); // if "0" is acceptable, then approach needs to be changed
+}
+
+String.prototype.multiply = function (factor) {
+  let x = this, y = factor, base = 10;
+  if (x.length < y.length) {
+    [x, y] = [y, x];
+  }
+  let product = [];
+  product.length = x.length + y.length;
+  product.fill(0);
+
+  let i, j, carry;
+  for (i = y.length - 1; i >= 0; i--) {
+    carry = 0;
+    for (j = x.length - 1; j >= 0; j--) {
+      product[i + j + 1] += carry + parseInt(x[j], 10) * parseInt(y[i], 10);
+      carry = Math.floor(product[i + j + 1] / base);
+      product[i + j + 1] = product[i + j + 1] % base;
+    }
+    product[i] = carry;
+  }
+  return product.join('').replace(/^0+/, ''); // if "0" is acceptable, then approach needs to be changed
 }
 
 module.exports = {validateMinusArgs};
