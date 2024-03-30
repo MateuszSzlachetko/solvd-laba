@@ -20,3 +20,57 @@ String.prototype.plus = function (term) {
   }
   return result.reverse().join('');
 }
+
+const validateMinusArgs = (arg1, arg2) => {
+  if (arg1.length > arg2.length)
+    return;
+
+  const error = new Error("First term must be greater than the second one");
+  if (arg1.length === arg2.length) {
+    for (let i = 0; i < arg1.length; ++i) {
+      if (parseInt(arg1[i]) > parseInt(arg2[i]))
+        return;
+      if (parseInt(arg1[i]) === parseInt(arg2[i]))
+        continue;
+      if (parseInt(arg1[i]) < parseInt(arg2[i]))
+        throw error;
+    }
+  }
+  // Comment for >= constraint
+  throw error;
+}
+
+function setCharAt(str,index,chr) {
+  if(index > str.length-1) return str;
+  return str.substring(0,index) + chr + str.substring(index+1);
+}
+
+String.prototype.minus = function (term) {
+  let x = this, y = term;
+  validateMinusArgs(x, y);
+
+  let result = [];
+  for (let i = 0; i < x.length; i++) {
+    let a = 0, b = 0, c = 0;
+    if (i < x.length) a = parseInt(x[x.length - 1 - i], 10);
+    if (i < y.length) b = parseInt(y[y.length - 1 - i], 10);
+    c = a - b;
+    if (c < 0) {
+      for (let j = x.length - 2 - i; j >= 0; --j) {
+        let z = parseInt(x[j], 10);
+        if (z === 0)
+          continue;
+        else {
+          x = setCharAt(x,j,(z-1).toString())
+          break;
+        }
+      }
+      result.push((10 + c).toString())
+    } else {
+      result.push((c).toString())
+    }
+  }
+  return result.reverse().join('').replace(/^0+/, '');
+}
+
+module.exports = {validateMinusArgs};
