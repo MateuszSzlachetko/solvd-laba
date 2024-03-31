@@ -10,10 +10,12 @@ describe('String.prototype.divide', () => {
   });
 
   it('should  divide BigInt arg', () => {
-    const num = "3"
-    const bigIntNum1 = "90999999999999999999999999099999999999999999999999"
-    const bigIntNum2 = "272999999999999999999999997299999999999999999999997"
+    const bigIntNum1 = "272999999999999999999999997299999999999999999999997"
+    const bigIntNum2 = "90999999999999999999999999099999999999999999999999"
+    const bigIntNum3 = "21312333333335323252352235532346325352352352352"
+    const bigIntNum4 = "57831233122312312331222222222221332121323232"
 
-    expect(bigIntNum2.divide(bigIntNum1)).toBe('3');
+    expect(bigIntNum1.divide(bigIntNum2)).toBe('3');
+    expect(bigIntNum3.divide(bigIntNum4)).toBe('368');
   });
 })

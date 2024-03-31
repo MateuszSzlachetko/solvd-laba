@@ -81,4 +81,50 @@ String.prototype.multiply = function (factor) {
   return product.join('').replace(/^0+/, ''); // if "0" is acceptable, then approach needs to be changed
 }
 
+
+String.prototype.divide = function (divisor) {
+  const compare = (arg1, arg2) => {
+    if (arg1.length > arg2.length)
+      return true;
+
+    if (arg1.length === arg2.length) {
+      for (let i = 0; i < arg1.length; ++i) {
+        if (parseInt(arg1[i]) > parseInt(arg2[i]))
+          return true;
+        if (parseInt(arg1[i]) === parseInt(arg2[i]) && i === arg1.length - 1)
+          return true;
+        if (parseInt(arg1[i]) === parseInt(arg2[i]))
+          return true;
+        if (parseInt(arg1[i]) < parseInt(arg2[i]))
+          return false;
+      }
+    }
+    return false;
+  }
+
+  const subtract = (arg1, arg2) => {
+    let result = [], borrow = 0;
+    for (let i = 0; i < arg1.length; i++) {
+      let c = parseInt(arg1[arg1.length - 1 - i], 10) - borrow;
+      if (i < arg2.length) c -= parseInt(arg2[arg2.length - 1 - i], 10);
+      if (c < 0) {
+        c += 10;
+        borrow = 1;
+      } else {
+        borrow = 0;
+      }
+      result.push(c)
+    }
+    return result.reverse().join('').replace(/^0+/, '');
+  }
+
+  let r = this, y = divisor;
+  let q = 0;
+  while (compare(r, y)) {
+    r = subtract(r, y);
+    q += 1;
+  }
+  return q.toString();
+}
+
 module.exports = {validateMinusArgs};
