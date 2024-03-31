@@ -1,4 +1,4 @@
-require('./index.js')
+require('../index.js')
 
 describe('String.prototype.multiply', () => {
   it('should multiply small numbers', () => {

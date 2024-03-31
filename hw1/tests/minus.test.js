@@ -1,4 +1,4 @@
-const {validateMinusArgs} = require('./index');
+const {validateMinusArgs} = require('../index');
 
 describe('validateMinusArgs', () => {
   it('should not throw on correct args', () => {
