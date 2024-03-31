@@ -94,7 +94,7 @@ String.prototype.divide = function (divisor) {
         if (parseInt(arg1[i]) === parseInt(arg2[i]) && i === arg1.length - 1)
           return true;
         if (parseInt(arg1[i]) === parseInt(arg2[i]))
-          return true;
+          continue;
         if (parseInt(arg1[i]) < parseInt(arg2[i]))
           return false;
       }
