@@ -14,8 +14,11 @@ describe('String.prototype.divide', () => {
     const bigIntNum2 = "90999999999999999999999999099999999999999999999999"
     const bigIntNum3 = "21312333333335323252352235532346325352352352352"
     const bigIntNum4 = "57831233122312312331222222222221332121323232"
+    const bigIntNum5 = "2222222222222222222222222"
+    const num6 = "2"
 
     expect(bigIntNum1.divide(bigIntNum2)).toBe('3');
     expect(bigIntNum3.divide(bigIntNum4)).toBe('368');
+    expect(bigIntNum5.divide(num6)).toBe('1111111111111111111111111');
   });
 })
