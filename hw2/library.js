@@ -1,3 +1,33 @@
+//addValues: Accepts two arguments of any type and performs the appropriate addition operation
+// based on the types of the arguments. The function should return the result of the addition.
+// If the addition is not possible, it should throw an error.
+function addValues(a, b) {
+  const typeA = Array.isArray(a) ? 'array' : typeof a;
+  const typeB = Array.isArray(b) ? 'array' : typeof b;
+
+  if (typeA === typeB) {
+    switch (typeA) {
+      case 'number':
+        return a + b;
+      case 'string':
+        return a + b;
+      case 'bigint':
+        return a + b;
+      case 'boolean':
+        return Number(a) + Number(b);
+      case 'array':
+        return a.concat(b);
+      case 'object':
+        if (a === null || b === null) throw new Error('Cannot add null objects');
+        return {...a, ...b}
+      default:
+        throw new Error('Incompatible types for addition');
+    }
+  } else {
+    throw new Error('Incompatible types for addition');
+  }
+}
+
 // invertBoolean:
 //   Accepts a single boolean argument and returns its inverted value.
 //   If the argument is not a boolean, it should throw an error.
@@ -85,4 +115,4 @@ function coerceToType(value, type) {
   }
 }
 
-module.exports = {invertBoolean,convertToNumber,stringifyValue,coerceToType};
+module.exports = {addValues,invertBoolean,convertToNumber,stringifyValue,coerceToType};
