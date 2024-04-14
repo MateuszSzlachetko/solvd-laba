@@ -46,4 +46,15 @@ function convertToNumber(value) {
   }
 }
 
-module.exports = {invertBoolean,convertToNumber};
+// stringifyValue:
+//   Accepts a single argument of any type and converts it to a string representation.
+//   For objects and arrays, use JSON.stringify() for serialization.
+//   For other types, use the appropriate built-in methods or operations to convert them to strings.
+function stringifyValue(value) {
+  if (typeof value === 'object' && value !== null) {
+    return JSON.stringify(value);
+  }
+  return String(value);
+}
+
+module.exports = {invertBoolean,convertToNumber,stringifyValue};
