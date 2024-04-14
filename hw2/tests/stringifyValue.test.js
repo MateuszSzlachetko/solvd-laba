@@ -35,7 +35,7 @@ describe('stringifyValue', () => {
 
   test('should convert a date object to a string', () => {
     const date = new Date("2023-01-01");
-    expect(stringifyValue(date)).toBe(date.toString());
+    expect(stringifyValue(date)).toBe(JSON.stringify(date));
   });
 
   test('should handle special characters in strings correctly', () => {
