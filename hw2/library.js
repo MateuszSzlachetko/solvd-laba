@@ -57,4 +57,32 @@ function stringifyValue(value) {
   return String(value);
 }
 
-module.exports = {invertBoolean,convertToNumber,stringifyValue};
+// coerceToType:
+//    Accepts two arguments: value and type.
+//    It attempts to convert the value to the specified type using type coercion.
+//    The function should return the coerced value if successful.
+//    If the coercion is not possible, it should throw an error.
+function coerceToType(value, type) {
+  switch (type.toLowerCase()) {
+    case 'string':
+      return String(value);
+    case 'number':
+      const number = Number(value);
+      if (isNaN(number)) {
+        throw new Error(`Cannot coerce '${value}' to number`);
+      }
+      return number;
+    case 'boolean':
+      return Boolean(value);
+    case 'object':
+      try {
+        return JSON.parse(value);
+      } catch {
+        throw new Error(`Cannot coerce '${value}' to object`);
+      }
+    default:
+      throw new Error(`Unsupported type: ${type}`);
+  }
+}
+
+module.exports = {invertBoolean,convertToNumber,stringifyValue,coerceToType};
