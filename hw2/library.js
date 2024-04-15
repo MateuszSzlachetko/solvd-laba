@@ -14,7 +14,7 @@ function addValues(a, b) {
       case 'bigint':
         return a + b;
       case 'boolean':
-        return Number(a) + Number(b);
+        return a | b;
       case 'array':
         return a.concat(b);
       case 'object':

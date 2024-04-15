@@ -19,10 +19,11 @@ describe('addValues', () => {
       .toBe(BigInt(30000000000000000000000));
   });
 
-  test('should add two boolean values as numbers', () => {
-    expect(addValues(true, false)).toBe(1);
-    expect(addValues(true, true)).toBe(2);
+  test('should add two boolean values', () => {
     expect(addValues(false, false)).toBe(0);
+    expect(addValues(true, false)).toBe(1);
+    expect(addValues(false, true)).toBe(1);
+    expect(addValues(true, true)).toBe(1);
   });
 
   test('should merge two objects', () => {
