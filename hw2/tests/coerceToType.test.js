@@ -9,7 +9,7 @@ describe('coerceToType', () => {
   test('should convert any value to a number', () => {
     expect(coerceToType('123', 'number')).toBe(123);
     expect(() => coerceToType('abc', 'number'))
-      .toThrow('Cannot coerce \'abc\' to number');
+      .toThrow('Cannot convert string: \'abc\' to number');
   });
 
   test('should convert any value to a boolean', () => {

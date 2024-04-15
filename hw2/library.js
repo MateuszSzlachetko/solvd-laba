@@ -95,13 +95,9 @@ function stringifyValue(value) {
 function coerceToType(value, type) {
   switch (type.toLowerCase()) {
     case 'string':
-      return String(value);
+      return stringifyValue(value);
     case 'number':
-      const number = Number(value);
-      if (isNaN(number)) {
-        throw new Error(`Cannot coerce '${value}' to number`);
-      }
-      return number;
+      return convertToNumber(value)
     case 'boolean':
       return Boolean(value);
     case 'object':
