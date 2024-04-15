@@ -20,10 +20,10 @@ describe('addValues', () => {
   });
 
   test('should add two boolean values', () => {
-    expect(addValues(false, false)).toBe(0);
-    expect(addValues(true, false)).toBe(1);
-    expect(addValues(false, true)).toBe(1);
-    expect(addValues(true, true)).toBe(1);
+    expect(addValues(false, false)).toBe(false);
+    expect(addValues(true, false)).toBe(true);
+    expect(addValues(false, true)).toBe(true);
+    expect(addValues(true, true)).toBe(true);
   });
 
   test('should merge two objects', () => {
