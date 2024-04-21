@@ -38,15 +38,9 @@ const sumElements = array => array.reduce((acc, element) => acc + element, 0);
 const getStudentGrades = student => student.grades
 const getAverage = grades => sumElements(grades) / grades.length
 
+const getAverageGrade = students => students.map(student => ({
+  name: student.name,
+  averageGrade: getAverage(getStudentGrades(student))
+}));
 
-const getAverageGrade = students => getAverage(students
-  .map(getStudentGrades) // returns array of grades arrays
-  .map(getAverage) // returns array of individual student's average grade
-) // apply getAverage on average grades
 console.log(getAverageGrade(students))
-
-// or if I misunderstood the instruction
-const getAllGrades = students => students.flatMap(student => student.grades);
-const getAverageGrade2 = students => getAverage(getAllGrades(students))
-
-console.log(getAverageGrade2(students))
