@@ -1,6 +1,7 @@
 import {BookFactory} from './model/Book.js';
 import {User} from "./model/User.js";
 import {Cart} from "./model/Cart.js";
+import {Order} from "./model/Order.js";
 
 function initBooks() {
   let books = [];
@@ -34,5 +35,24 @@ const user1 = new User("Mateusz","mateusz@gmail.com")
 const user2 = new User("Alina","alina@gmail.com")
 
 const cart1 = new Cart(user1);
+const cart2 = new Cart(user2);
+const cart3 = new Cart(user2);
 
-cart1.addBooks(books.slice(0,1));
+cart1.addBooks(books.slice(0,3));
+
+const order1 = new Order(cart1);
+
+order1.finalizeOrder();
+
+// Error scenario, not enough books in the store
+cart2.addBooks([...books.slice(4,5),...books.slice(4,5),...books.slice(4,5)]);
+const order2 = new Order(cart2);
+order2.finalizeOrder();
+cart3.addBooks(books.slice(4,5))
+const order3 = new Order(cart3);
+
+try {
+  order3.finalizeOrder()
+} catch (error) {
+  console.error(error);
+}
