@@ -1,7 +1,7 @@
-import {BookFactory} from './model/Book.js';
-import {User} from "./model/User.js";
-import {Cart} from "./model/Cart.js";
-import {Order} from "./model/Order.js";
+import {BookFactory} from './model/Book/Book.js';
+import {User} from "./model/User/User.js";
+import {Cart} from "./model/Cart/Cart.js";
+import {Order} from "./model/Order/Order.js";
 
 function initBooks() {
   let books = [];
