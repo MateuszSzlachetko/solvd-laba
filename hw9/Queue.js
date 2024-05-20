@@ -1,4 +1,4 @@
-class Queue {
+export class Queue {
   constructor(size) {
     this.size = size;
     this.array = [];
@@ -16,20 +16,28 @@ class Queue {
   peek() {
     return this.array[0];
   }
+
+  isEmpty() {
+    return this.array.length === 0;
+  }
 }
 
-const queue = new Queue(5);
-queue.enqueue(1);
-queue.enqueue(2);
-queue.enqueue(3);
-console.log(queue.dequeue()); // 1
-console.log(queue.dequeue()); // 2
-console.log(queue.dequeue()); // 3
-queue.enqueue(4);
-console.log(queue.peek()); // 4
-queue.enqueue(5);
-queue.enqueue(6);
-queue.enqueue(7);
-queue.enqueue(8);
-queue.enqueue(9); // error
+function test() {
+  const queue = new Queue(5);
+  queue.enqueue(1);
+  queue.enqueue(2);
+  queue.enqueue(3);
+  console.log(queue.dequeue()); // 1
+  console.log(queue.dequeue()); // 2
+  console.log(queue.dequeue()); // 3
+  queue.enqueue(4);
+  console.log(queue.peek()); // 4
+  queue.enqueue(5);
+  queue.enqueue(6);
+  queue.enqueue(7);
+  queue.enqueue(8);
+  queue.enqueue(9); // error
+}
+
+// test()
 
