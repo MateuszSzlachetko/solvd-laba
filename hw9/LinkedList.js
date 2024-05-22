@@ -9,7 +9,7 @@ class LinkedList {
 
     const newNode = new Node(value); // create new node
     newNode.next = this.head; // point it to the current head node
-    this.head = newNode; // set is as a head
+    return this.head = newNode; // set is as a head
   }
 
   delete(value) {
@@ -49,6 +49,7 @@ class LinkedList {
     let listString = "";
     while (current !== null) {
       listString += current.value + " -> ";
+      console.log(listString);
       current = current.next;
     }
     listString += "null";
@@ -57,9 +58,9 @@ class LinkedList {
 }
 
 class Node {
-  constructor(value) {
+  constructor(value,next=null) {
     this.value = value;
-    this.next = null;
+    this.next = next;
   }
 }
 
@@ -99,3 +100,33 @@ list.print();
 
 list.delete(8);
 list.print();
+
+function hasCycle(listHead) {
+  let slow = listHead
+  let fast = listHead
+
+  while(fast !== null && fast.next != null) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) {
+      return true;
+    }
+  }
+  return false;
+}
+
+const list2 = new LinkedList();
+let node1 = new Node(1);
+let node2 = new Node(2);
+let node3 = new Node(3);
+let node4 = new Node(4);
+let node5 = new Node(5);
+
+list2.head = node1
+node1.next = node2
+node2.next = node3
+node3.next = node4
+node4.next = node5
+console.log(hasCycle(list2.head))
+node5.next = node2
+console.log(hasCycle(list2.head))
