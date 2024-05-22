@@ -39,5 +39,5 @@ function test() {
   queue.enqueue(9); // error
 }
 
-// test()
+test()
 

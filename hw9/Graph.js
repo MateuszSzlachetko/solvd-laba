@@ -146,7 +146,4 @@ function bfsShortestPath(graph, sourceVertex, destinationVertex) {
       }
     }
   }
-
-  console.log(`No path from ${sourceVertex} to ${destinationVertex}`);
-  return -1;
 }
