@@ -70,3 +70,26 @@ console.log(btree.traverseInOrder()) // [8,2,5,3,1,3,5]
 console.log(btree.traversePreOrder()) // [1,2,8,5,3,5,3]
 console.log(btree.traversePostOrder()) // [8,3,5,2,3,5,1]
 console.log(btree.searchForANodeValue(5))
+
+console.log(isBST(btree.tree))
+const bst1 = new BinaryTree(new Node(1, null, null))
+const bst2 = new BinaryTree(new Node(5,
+  new Node(3, new Node(1, null, null), new Node(4, null, null)),
+  new Node(6, null, null)))
+
+console.log(isBST(bst1.tree))
+console.log(isBST(bst2.tree))
+
+
+function isBST(tree, min = -Infinity, max = Infinity) {
+  if (tree === null) {
+    return true;
+  }
+  if (tree.value <= min || tree.value >= max) {
+    return false;
+  }
+  return (
+    isBST(tree.leftTree, min, tree.value) &&
+    isBST(tree.rightTree, tree.value, max)
+  );
+}
